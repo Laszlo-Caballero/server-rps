@@ -44,6 +44,9 @@ export default function initializeSocket(server) {
       socket.broadcast.to(room).emit("Turn Opponent", option);
     });
   });
-
+  setInterval(() => {
+    activeRooms = activeRooms.filter((element) => element.players !== 0);
+    io.emit("New room", activeRooms);
+  }, 120000);
   return { io, activeRooms };
 }

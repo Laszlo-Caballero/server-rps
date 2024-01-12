@@ -28,8 +28,3 @@ server.listen(4000, () => {
 setInterval(() => {
   console.log(activeRooms);
 }, 3000);
-
-setInterval(() => {
-  activeRooms = activeRooms.filter((element) => element.players !== 0);
-  io.emit("New room", activeRooms);
-}, 120000);
