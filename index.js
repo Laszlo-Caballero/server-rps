@@ -10,6 +10,6 @@ const { io } = initializeSocket(server);
 app.use(cors());
 app.use("/", router);
 
-server.listen(3000, () => {
+server.listen(4000, () => {
   console.log("Server on Port 4000");
 });
