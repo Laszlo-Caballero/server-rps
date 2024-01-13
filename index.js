@@ -7,7 +7,11 @@ const app = express();
 const server = createServer(app);
 const { io } = initializeSocket(server);
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://rockpaperscissorsfrontendmentor.vercel.app/"],
+  })
+);
 app.use("/", router);
 
 server.listen(4000, () => {
