@@ -14,6 +14,4 @@ app.use(
 );
 app.use("/", router);
 
-server.listen(4000, () => {
-  console.log("Server on Port 4000");
-});
+server.listen(4000);
