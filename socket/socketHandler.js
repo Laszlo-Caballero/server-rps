@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 let activeRooms = [];
 function initializeSocket(server) {
   const io = new Server(server, {
-    cors: "*",
+    cors: "rockpaperscissorsfrontendmentor.vercel.app",
   });
 
   io.on("connection", (socket) => {
