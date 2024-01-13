@@ -9,7 +9,7 @@ const { io } = initializeSocket(server);
 
 app.use(
   cors({
-    origin: ["https://rockpaperscissorsfrontendmentor.vercel.app/"],
+    origin: "*",
   })
 );
 app.use("/", router);

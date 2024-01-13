@@ -3,7 +3,7 @@ let activeRooms = [];
 function initializeSocket(server) {
   const io = new Server(server, {
     cors: {
-      origin: "https://rockpaperscissorsfrontendmentor.vercel.app/",
+      origin: "*",
     },
   });
 
