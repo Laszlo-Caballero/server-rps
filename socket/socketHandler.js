@@ -1,11 +1,9 @@
 import { Server } from "socket.io";
-
-export default function initializeSocket(server) {
+let activeRooms = [];
+function initializeSocket(server) {
   const io = new Server(server, {
     cors: "*",
   });
-
-  let activeRooms = [];
 
   io.on("connection", (socket) => {
     console.log("a user connected");
@@ -43,10 +41,15 @@ export default function initializeSocket(server) {
       console.log(option, socket.id);
       socket.broadcast.to(room).emit("Turn Opponent", option);
     });
+    socket.on("Play Again", (room) => {
+      socket.broadcast.to(room).emit("Set Again");
+    });
   });
   setInterval(() => {
     activeRooms = activeRooms.filter((element) => element.players !== 0);
     io.emit("New room", activeRooms);
   }, 120000);
-  return { io, activeRooms };
+  return { io };
 }
+
+export { activeRooms, initializeSocket };

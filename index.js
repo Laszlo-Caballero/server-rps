@@ -1,25 +1,14 @@
 import express from "express";
 import { createServer } from "node:http";
 import cors from "cors";
-import initializeSocket from "./socketHandler.js";
-
+import { initializeSocket, activeRooms } from "./socket/socketHandler.js";
+import router from "./routes/index.js";
 const app = express();
 const server = createServer(app);
-const { io, activeRooms } = initializeSocket(server);
+const { io } = initializeSocket(server);
 
 app.use(cors());
-
-app.get("/rooms", (req, res) => {
-  res.send(activeRooms);
-});
-
-app.get("/players/:room", (req, res) => {
-  const { room } = req.params;
-  const index = activeRooms.findIndex((element) => element.room === room);
-  res.send(
-    index !== -1 ? { players: activeRooms[index].players } : { players: 1 }
-  );
-});
+app.use("/", router);
 
 server.listen(4000, () => {
   console.log("Server on Port 4000");
