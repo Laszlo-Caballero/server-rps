@@ -13,7 +13,3 @@ app.use("/", router);
 server.listen(4000, () => {
   console.log("Server on Port 4000");
 });
-
-setInterval(() => {
-  console.log(activeRooms);
-}, 3000);
